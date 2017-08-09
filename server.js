@@ -3,12 +3,17 @@ const hbs = require('hbs');
 const fs = require('fs');
 let app = express();
 
+// to run on HEROKU
+// HEROKU uses command 'npm start' to run application
+// DON'T FORGET TO CREATE 'start' task in package.json beore deployment
+const port = process.env.PORT || 3000;
+
 hbs.registerPartials(__dirname + '/views/partials');
 
 /**
  * The order of the middlewares is important!!!!!
  */
-
+ 
 // app.set(key, value)
 app.set('view engine', 'hbs');
 
@@ -50,6 +55,6 @@ app.get('/about', (req, res) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log('Server is up on localhost:3000');
+app.listen(port, () => {
+  console.log(`Server is up on port ${ port }`);
 });
